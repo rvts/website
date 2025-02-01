@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulier naar Google Formulier</title>
+</head>
+<body>
+    <h1>Mijn Formulier</h1>
+    <form id="mijnFormulier">
+        <label for="naam">Naam:</label>
+        <input type="text" id="naam" name="naam" required><br><br>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="land">Land:</label>
+        <input type="text" id="land" name="land" list="landen-lijst" autocomplete="off">
+        <datalist id="landen-lijst">
+            <option value="Nederland">
+            <option value="België">
+            <option value="Duitsland">
+            <option value="Frankrijk">
+            <option value="Spanje">
+            <option value="Italië">
+            <option value="Verenigd Koninkrijk">
+            <option value="Verenigde Staten">
+            <option value="Canada">
+            <option value="Australië">
+        </datalist><br><br>
+
+        <button type="button" onclick="verstuurFormulier()">Verzenden</button>
+    </form>
+
+    <script>
+        function verstuurFormulier() {
+            const naam = document.getElementById('naam').value;
+            const email = document.getElementById('email').value;
+            const land = document.getElementById('land').value;
+
+            const baseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfbt10lZa0CEppljmQyF516FQ7UmQZ5RD4wKlEK3cvVmDWmDg/viewform?;
+            const params = new URLSearchParams({
+                'entry.263738770': naam,  // Vervang met de juiste veld-ID
+                'entry.1061594390': email, // Vervang met de juiste veld-ID
+                'entry.564486325': land   // Vervang met de juiste veld-ID
+            });
+
+            window.location.href = baseUrl + params.toString();
+        }
+    </script>
+</body>
+</html>
